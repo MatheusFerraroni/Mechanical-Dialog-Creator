@@ -190,9 +190,7 @@ class Chat extends React.Component {
   render() {
     if (this.state.status==='first'){
       return (<div>Starting Chat</div>)
-    }else if (this.state.status==='loading'){
-      return (<div>Loading story</div>)
-    }else if(this.state.status==='writing_story'){
+    }else if(this.state.status==='writing_story' || this.state.status==='loading'){
       return this.render_writing_story();
     }
   }
@@ -248,9 +246,15 @@ class Chat extends React.Component {
   render_writing_story_left_panel(){
 
     const dis = this;
-    let story_now = this.state.story.content
-    const turn_now = ((this.state.story.turn_now%2===1) ? 'Cliente' : 'Sistema');
-    story_now = story_now.split("\n")
+    let story_now = []
+    let turn_now = ""
+    let story_id = ""
+    if (this.state.story!=null && this.state.status!=='loading'){
+      story_now = this.state.story.content
+      turn_now = ((this.state.story.turn_now%2===1) ? 'Cliente' : 'Sistema');
+      story_now = story_now.split("\n")
+      story_id = this.state.story.idd
+    }
 
 
     return (
@@ -258,7 +262,7 @@ class Chat extends React.Component {
         <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mt-3 self-auto mx-6">
 
           <div className="flex flex-col items-center py-5">
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">História: {this.state.story.idd}</h5>
+            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">História: {story_id}</h5>
             <span className="text-sm text-gray-500 dark:text-gray-400">Escrevendo como: <b>{turn_now}</b></span>
             <br />
             <span className="text-sm text-gray-500 dark:text-gray-400">Usuário: {this.state.email}</span>
@@ -320,6 +324,9 @@ class Chat extends React.Component {
   }
 
   render_writing_story_right_panel(){
+    if (this.state.status==='loading'){
+      return (<div>Loading</div>)
+    }
     const label_talking_to = ((this.state.story.turn_now%2===0) ? 'Cliente' : 'Sistema');
     const dis = this;
     return (
@@ -410,7 +417,6 @@ class Chat extends React.Component {
   }
 
   scrollToBottom () {
-
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -421,7 +427,6 @@ class Chat extends React.Component {
   }
 
   componentDidUpdate() {
-    
     if (this.messagesEnd!=undefined){
       this.scrollToBottom();
     }

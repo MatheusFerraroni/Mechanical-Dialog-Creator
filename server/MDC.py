@@ -460,7 +460,7 @@ class StoryManager(object):
         ret = {}
         ret['uptime_seconds'] = int((datetime.datetime.now()-self.time_start).total_seconds())
         ret['stories_data'] = {}
-        ret['stories_data']['stories'] = [self.cache['stories'][s_id].get_id() for s_id in self.cache['stories'].keys()]
+        ret['stories_data']['stories'] = [self.cache['stories'][s_id].get_infos() for s_id in self.cache['stories'].keys()]
         ret['stories_data']['stories_open'] = self.cache['stories_open']
         ret['stories_data']['stories_closed'] = self.cache['stories_closed']
         ret['stories_data']['stories_active'] = self.cache['stories_active']
