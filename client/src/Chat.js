@@ -125,12 +125,23 @@ class ApiMDC{
 class Chat extends React.Component {
   constructor(props) {
     super(props);
+
+    const search_params = this.getSearch()
+    const keys = Object.keys(search_params)
+
+    if ( !keys.includes('server_url') || !keys.includes('server_key') || !keys.includes('email') || !keys.includes('name') || !keys.includes('user_uid') ){
+      window.location = window.location.origin
+    }
+
+    // eslint-disable-next-line no-restricted-globals
+    history.pushState(history.state, "/chat", "/chat");
+
     this.state = {
-      server_url: "http://localhost:8888/",
-      server_key: "1033b11e-ea82-11ec-8fea-0242ac120002",
-      email: "mail@mail.com",
-      name: "nome",
-      user_uid: "33b46c3b-0299-4459-924s-ab5ba7f67f1a",
+      server_url: search_params['server_url'],
+      server_key: search_params['server_key'],
+      email: search_params['email'],
+      name: search_params['name'],
+      user_uid: search_params['user_uid'],
 
       status: 'first',
 
@@ -140,6 +151,7 @@ class Chat extends React.Component {
 
       'message': '',
     };
+    console.log(this.state)
     
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -155,6 +167,20 @@ class Chat extends React.Component {
 
     setTimeout(this.requestStory, 100);
   }
+
+  getSearch() {
+    var parsedSearch;
+    parsedSearch = window.parsedSearch || (function() {
+      var match, re, ret;
+      re = /\??(.*?)=([^\&]*)&?/gi;
+      ret = {};
+      while (match = re.exec(document.location.search)) {
+        ret[match[1]] = match[2];
+      }
+      return window.parsedSearch = ret;
+    })();
+    return parsedSearch
+  };
 
   requestStory(){
     this.setState({'status': 'loading'})

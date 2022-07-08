@@ -7,11 +7,14 @@ import Chat from './Chat';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-// root.render(
-//     <App />
-// );
+if (window.location.pathname=="/chat"){
+    root.render(
+        <Chat />
+    );
+}else{
+    root.render(
+        <App />
+    );
+}
 
 
-root.render(
-    <Chat />
-);

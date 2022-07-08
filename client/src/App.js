@@ -140,7 +140,13 @@ class App extends React.Component {
   }
 
   access_chat(){
-
+    let params = "/chat?"
+    params += "server_url="+this.state.server_url+"&"
+    params += "server_key="+this.state.server_key+"&"
+    params += "email="+this.state.email+"&"
+    params += "name="+this.state.name+"&"
+    params += "user_uid="+this.state.user_uid
+    window.location = window.location.origin+params
   }
 
   enable_confirm_account(){
@@ -214,8 +220,8 @@ class App extends React.Component {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg w-96">
                 <h3 className="text-2xl font-bold text-center">Usuário</h3>
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center mt-3" role="alert">
-                  <span class="block sm:inline">Usuário não encontrado.</span>
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center mt-3" role="alert">
+                  <span className="block sm:inline">Usuário não encontrado.</span>
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="mt-4">
@@ -250,8 +256,8 @@ class App extends React.Component {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg w-96">
                 <h3 className="text-2xl font-bold text-center">Usuário</h3>
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-center mt-3" role="alert">
-                  <span class="block sm:inline">Usuário encontrado! <br/> Confirme seus dados.</span>
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-center mt-3" role="alert">
+                  <span className="block sm:inline">Usuário encontrado! <br/> Confirme seus dados.</span>
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="mt-4">
