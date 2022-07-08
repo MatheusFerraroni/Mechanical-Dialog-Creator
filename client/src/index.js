@@ -7,7 +7,7 @@ import Chat from './Chat';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-if (window.location.pathname=="/chat"){
+if (window.location.pathname=="/chat" || window.location.pathname=="/Mechanical-Dialog-Creator/chat"){
     root.render(
         <Chat />
     );

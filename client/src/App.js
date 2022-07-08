@@ -140,7 +140,7 @@ class App extends React.Component {
   }
 
   access_chat(){
-    let params = "/chat?"
+    let params = "/Mechanical-Dialog-Creator/chat?"
     params += "server_url="+this.state.server_url+"&"
     params += "server_key="+this.state.server_key+"&"
     params += "email="+this.state.email+"&"
