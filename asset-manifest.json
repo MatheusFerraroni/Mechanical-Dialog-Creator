@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Mechanical-Dialog-Creator/static/css/main.a66a09f8.css",
+    "main.js": "/Mechanical-Dialog-Creator/static/js/main.73c2ae2c.js",
+    "index.html": "/Mechanical-Dialog-Creator/index.html",
+    "main.a66a09f8.css.map": "/Mechanical-Dialog-Creator/static/css/main.a66a09f8.css.map",
+    "main.73c2ae2c.js.map": "/Mechanical-Dialog-Creator/static/js/main.73c2ae2c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a66a09f8.css",
+    "static/js/main.73c2ae2c.js"
+  ]
+}
